@@ -1,0 +1,332 @@
+/* ==========================================================================
+   [[Your game name]] - shared stylesheet
+   One stylesheet is used by every page so the whole site shares one style.
+   Sections:
+     1. Design tokens
+     2. Base elements and typography
+     3. Layout helpers
+     4. Pixel borders, buttons and keycaps
+     5. Site header and navigation
+     6. Home page
+     7. Forms (registration and login)
+     8. Auth page layout and explorer preview
+     9. Game page
+    10. Rankings page
+    11. Site footer
+    12. Character sprites (added in Part 3)
+    13. Responsive adjustments
+    14. Reduced motion
+   ========================================================================== */
+
+
+/* 1. Design tokens
+   Every colour, font and size lives here, so the whole look changes from one place.
+   -------------------------------------------------------------------------- */
+:root {
+    /* YOUR TURN: your palette. Keep dark backgrounds with light text (or the reverse)
+       so everything stays readable. Change the hex values, not the names. */
+    --ink: #1b1838;            /* page background */
+    --ink-deep: #120f2a;       /* header and footer background */
+    --panel: #262150;          /* boxes and cards */
+    --panel-raised: #2f2960;   /* buttons and inputs */
+    --ridge: #3a3570;          /* borders */
+    --ridge-light: #554d9a;    /* highlighted borders */
+    --outline: #1a1530;        /* darkest edge, text on light buttons */
+    --text: #f3ebdd;           /* main text */
+    --muted: #bdb7dc;          /* secondary text */
+    --faint: #8a84b0;          /* placeholder text */
+    --accent: #ffb347;         /* links, main buttons, the current page */
+    --accent-light: #ffd38a;   /* accent on hover */
+    --accent-deep: #c26a2b;    /* accent in shadow */
+    --green: #7bd389;          /* level 1 colour */
+    --blue: #6fd3f2;           /* level 2 colour */
+    --hot: #ff7b39;            /* level 3 colour */
+    --danger: #ff8f8f;         /* error messages */
+    --success: #7bd389;        /* success messages */
+
+    /* See-through versions (the last number is the opacity) */
+    --header-glass: rgb(18 15 42 / 0.94);
+    --overlay: rgb(18 15 42 / 0.82);
+    --focus-glow: rgb(255 179 71 / 0.35);
+
+    /* YOUR TURN: your two fonts from Task 1.3, each followed by fallbacks */
+    --font-display: "Pixelify Sans", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+
+    /* Type scale: each step is about 1.25 times the one below */
+    --step--1: 0.9rem;
+    --step-0: 1.0625rem;
+    --step-1: 1.33rem;
+    --step-2: 1.66rem;
+    --step-3: 2.08rem;
+    --step-4: clamp(2.3rem, 4.2vw, 3.4rem);
+
+    /* Spacing and sizing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4.5rem;
+    --page-width: 72rem;
+    --measure: 64ch;
+    --pixel: 4px;
+}
+
+
+/* 2. Base elements and typography
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* A flex column whose main area grows keeps the footer at the bottom of short pages */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ink);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+}
+
+h1 {
+    font-size: var(--step-4);
+}
+
+h2 {
+    font-size: var(--step-3);
+}
+
+h3 {
+    font-size: var(--step-1);
+}
+
+/* Long lines are hard to read, so paragraphs stop at about 64 characters */
+p {
+    margin: 0 0 var(--space-4);
+    max-width: var(--measure);
+}
+
+a {
+    color: var(--accent);
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--accent-light);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* A clear outline shows where keyboard focus is */
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--outline);
+}
+
+/* Hidden on screen but still read out by screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Parked above the page until a keyboard user tabs to it */
+.skip-link {
+    position: absolute;
+    left: var(--space-4);
+    top: -4rem;
+    z-index: 100;
+    padding: var(--space-2) var(--space-4);
+    background: var(--accent);
+    color: var(--outline);
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: var(--space-4);
+}
+
+/* 3. Layout helpers
+   -------------------------------------------------------------------------- */
+/* A centred column that never gets wider than the page width */
+.container {
+    width: 100%;
+    max-width: var(--page-width);
+    margin-inline: auto;
+    padding-inline: var(--space-5);
+}
+
+.section {
+    padding-block: var(--space-8);
+}
+
+.section__intro {
+    margin-bottom: var(--space-6);
+}
+
+.section__intro p {
+    color: var(--muted);
+}
+
+.page-heading {
+    padding-block: var(--space-7) var(--space-5);
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: var(--step-1);
+    line-height: 1.45;
+}
+
+
+/* 4. Pixel borders, buttons and keycaps
+   The notched "pixel" border is drawn with four offset box-shadows, which
+   leaves the corners empty just like a sprite outline.
+   -------------------------------------------------------------------------- */
+/* YOUR TURN: notched corners suit pixel art. For a smoother style, replace the
+   four shadows with "border: 3px solid var(--frame-colour); border-radius: 12px;" */
+.pixel-frame {
+    --frame-colour: var(--ridge);
+    background: var(--panel);
+    box-shadow:
+        0 calc(var(--pixel) * -1) 0 0 var(--frame-colour),
+        0 var(--pixel) 0 0 var(--frame-colour),
+        calc(var(--pixel) * -1) 0 0 0 var(--frame-colour),
+        var(--pixel) 0 0 0 var(--frame-colour);
+}
+
+/* Buttons keep their colours in local variables, so a variant only changes the variables.
+   The fifth shadow is the "lip" underneath that makes the button look raised. */
+.button {
+    --btn-face: var(--panel-raised);
+    --btn-edge: var(--ridge-light);
+    --btn-lip: var(--outline);
+    --btn-text: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-5);
+    border: 0;
+    background: var(--btn-face);
+    color: var(--btn-text);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow:
+        0 -3px 0 0 var(--btn-edge),
+        0 3px 0 0 var(--btn-edge),
+        -3px 0 0 0 var(--btn-edge),
+        3px 0 0 0 var(--btn-edge),
+        0 7px 0 0 var(--btn-lip);
+    transition: transform 80ms ease-out, box-shadow 80ms ease-out, filter 120ms;
+}
+
+.button:hover {
+    color: var(--btn-text);
+    filter: brightness(1.12);
+}
+
+/* Pressed: the button moves down 4px and the lip shrinks */
+.button:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 -3px 0 0 var(--btn-edge),
+        0 3px 0 0 var(--btn-edge),
+        -3px 0 0 0 var(--btn-edge),
+        3px 0 0 0 var(--btn-edge),
+        0 3px 0 0 var(--btn-lip);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.button--primary {
+    --btn-face: var(--accent);
+    --btn-edge: var(--accent-light);
+    --btn-lip: var(--accent-deep);
+    --btn-text: var(--outline);
+}
+
+.button--small {
+    min-height: 2.25rem;
+    padding-inline: var(--space-4);
+    font-size: var(--step-0);
+}
+
+.button--wide {
+    width: 100%;
+}
+
+/* Keyboard keys shown in the instructions: a small version of the button look */
+.kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 var(--space-2);
+    margin: 0 0.15rem 0.45rem;
+    background: var(--panel-raised);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    box-shadow:
+        0 -2px 0 0 var(--ridge-light),
+        0 2px 0 0 var(--ridge-light),
+        -2px 0 0 0 var(--ridge-light),
+        2px 0 0 0 var(--ridge-light),
+        0 5px 0 0 var(--outline);
+}
+
+.kbd--wide {
+    min-width: 4.5rem;
+}
