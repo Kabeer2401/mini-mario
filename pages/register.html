@@ -3,62 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | Glowbound</title>
-    <meta name="description" content="Register as a new user and join the Glowbound community. Play as Robots and navigate through challenging levels filled with obstacles and enemies.">
-    <!-- Draw logo (32*32) -->
-    <link rel="icon" href="../images/site/logo.svg" type="image/svg+xml">
-    <!-- pick font for heading and readable foot -->    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="module" src="../js/app/pages/register.js"></script>
+    <title>Register | Glowbound</title>
+    <link rel="icon" href="images/site/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/nav.js"></script>
+    <script type="module" src="js/register.js"></script>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <header class="site-header">
-        <div class="site-header__inner">
-            <a class="brand" href="index.html">
-                <img class="brand__logo" src="../images/site/logo.svg" alt="Mini Mario logo" width="32" height="32">
-                <span class="brand__text">Mini Mario</span>
-            </a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-                <span class="nav-toggle__bars" aria-hidden="true"></span>
-                <span class="visually-hidden">Menu</span>
-            </button>
-            <nav class=""site-nav" id="site-nav" aria-label="Main">
-                <ul class="site-nav__list">
-                    <li><a class="site-nav__link" href="index.html" aria-current="page">Home</a></li>
-                    <li><a class="site-nav__link" href="pages/game.html">Play Game</a></li>
-                    <li><a class="site-nav__link" href="pages/rankings.html">Rankings</a></li>
-                    <li><a class="site-nav__link" href="pages/register.html" aria-current="page">Register</a></li>
-                    <li><a class="site-nav__link" href="pages/login.html">Log in</a></li>
-                </ul>
-                <div class="user-chip" data-user-chip-hidden>
-                    <span class="sprite" data-user-avatar aria-hidden="true"></span>
-                    <span class="user-chip__name" data-user-name></span>
-                    <button class="user-chip__logout" type="button" data-user-logout>Log out</button>
-                </div>
-            </nav>
-        </div>
+    <header>
+        <a class="logo" href="index.html">
+            <img src="images/site/logo.svg" alt="" width="32" height="32">
+            Glowbound
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="game.html">Play</a>
+            <a href="rankings.html">Rankings</a>
+            <a href="register.html" class="current">Register</a>
+            <a href="login.html">Log in</a>
+        </nav>
+        <div id="UserStatus" class="user-status"></div>
     </header>
-    <!-- Register page -->
-    <main id="main">
-    </main>
+        <main>
+        <h1>Create an account</h1>
+        <p>Register so your best score is saved on the rankings.</p>
 
+        <div class="panel">
+            <label for="NameInput">Player name</label>
+            <input type="text" id="NameInput">
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="site-footer__inner">
-            <p>Glowbound was made by Jayeshvara Kabeer Kotadoo forCST21230 Web Applications and Databases.</p>
-            <ul> class="site-footer__links">
-                <li><a href="pages/game.html">Game</a></li>
-                <li><a href="pages/rankings.html">Rankings</a></li>
-                <li><a href="pages/register.html">Register</a></li>
-                <li><a href="pages/login.html">Log in</a></li>
-            </ul>
+            <label for="EmailInput">Email</label>
+            <input type="email" id="EmailInput">
+
+            <label for="PhoneInput">UK phone number</label>
+            <input type="tel" id="PhoneInput">
+
+            <label for="ColourInput">Lantern colour (Pip's colour in the game)</label>
+            <select id="ColourInput">
+                <option value="">Choose one</option>
+                <option value="Ember">Ember (orange)</option>
+                <option value="Tide">Tide (blue)</option>
+                <option value="Moss">Moss (green)</option>
+                <option value="Violet">Violet (purple)</option>
+            </select>
+
+            <label for="PasswordInput">Password</label>
+            <input type="password" id="PasswordInput">
+            <p class="hint">At least 8 characters, with a lower-case letter, a capital letter, a number and a symbol.</p>
+
+            <label for="ConfirmInput">Confirm password</label>
+            <input type="password" id="ConfirmInput">
+
+            <button type="button" id="RegisterButton" class="button">Register</button>
+
+            <div id="FeedbackPara" class="feedback"></div>
         </div>
+    </main>
+        <footer>
+        <p>Glowbound was made for CST2120 Web Applications and Databases.</p>
     </footer>
 </body>
 </html>
