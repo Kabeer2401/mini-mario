@@ -41,6 +41,7 @@ footer {
 /*Header and navigation bar useing box model from moodle*/  
 header {
     background-color: #122a52;
+    display: grid; 
     padding: 10px 20px;
     column-gap: 20px;
     grid-template-columns: auto auto auto;
@@ -85,12 +86,12 @@ nav > a.current {
     color: #0c1d3e;
 }
 
-user-status {
+.user-status {
     font-size: 14px;
     text-align: right;
 }
 
-.user-status a {
+.user-status button {
     cursor: pointer;
     font-size: 14px;
     padding: 4px 10px;

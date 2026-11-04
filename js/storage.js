@@ -3,7 +3,7 @@ const USERS_KEY = "glowboundUsers";
 const LOGGED_IN_KEY = "glowboundLoggedIn";
 
 //Save account and scores as JSON in local storage
-export class UserStorage {
+export class UserStore {
     getUsers() {
         const usersString = localStorage.getItem(USERS_KEY);
         if (usersString === null) {
@@ -16,7 +16,7 @@ export class UserStorage {
     #saveUsers(users) {
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
     }
-    //return email or undefined if none found
+//return email or undefined if none found
     findUser(email) {
         return this.getUsers().find(user => user.email === email);
     }   
@@ -24,6 +24,7 @@ export class UserStorage {
 //Add new user with top score of 0
     addUser(newUser) {
         const users = this.getUsers();
+        newUser.topScore = 0;
         users.push(newUser);
         this.#saveUsers(users);
     }
@@ -33,10 +34,10 @@ export class UserStorage {
         sessionStorage.setItem(LOGGED_IN_KEY, email);
 }
 
-//Get logged in user
-    getLoggedInUser() {
-        return sessionStorage.getItem(LOGGED_IN_KEY);
-}
+//Forget logged in user
+    logOut() {
+        sessionStorage.removeItem(LOGGED_IN_KEY);
+    }
 
 //return logged in or undefined
     getLoggedInUser() {
@@ -44,7 +45,7 @@ export class UserStorage {
         if (email === null) {
             return undefined;
         }
-        return email;
+        return this.findUser(email);
     }
 
 //Save new score for user if it is higher than previous score and return true if score is new top score

@@ -3,62 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Mario: Relive your childhood adventures</title>
-    <meta name="description" content="Mini Mario is a game that allows you to relive your childhood adventures. Play as Robots and navigate through challenging levels filled with obstacles and enemies.">
-    <!-- Draw logo (32*32) -->
+    <title>Home | Glowbound</title>
     <link rel="icon" href="images/site/logo.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&amp;display=swap">
     <link rel="stylesheet" href="css/styles.css">
-    <script type="module" src="js/app/pages/home.js"></script>
+    <script type="module" src="js/nav.js"></script>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <header class="site-header">
-        <div class="site-header__inner">
-            <a class="brand" href="index.html">
-                <img class="brand__logo" src="images/site/logo.svg" alt="Glowbound logo" width="32" height="32">
-                <span class="brand__text">Glowbound</span>
-            </a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-                <span class="nav-toggle__bars" aria-hidden="true"></span>
-                <span class="visually-hidden">Menu</span>
-            </button>
-            <nav class=""site-nav" id="site-nav" aria-label="Main">
-                <ul class="site-nav__list">
-                    <li><a class="site-nav__link" href="index.html" aria-current="page">Home</a></li>
-                    <li><a class="site-nav__link" href="pages/game.html">Play Game</a></li>
-                    <li><a class="site-nav__link" href="pages/rankings.html">Rankings</a></li>
-                    <li><a class="site-nav__link" href="pages/register.html">Register</a></li>
-                    <li><a class="site-nav__link" href="pages/login.html">Log in</a></li>
-                </ul>
-                <div class="user-chip" data-user-chip-hidden>
-                    <span class="sprite" data-user-avatar aria-hidden="true"></span>
-                    <span class="user-chip__name" data-user-name></span>
-                    <button class="user-chip__logout" type="button" data-user-logout>Log out</button>
-                </div>
-            </nav>
-        </div>
+    <header>
+        <a class="logo" href="index.html">
+            <img src="images/site/logo.svg" alt="" width="32" height="32">
+            Glowbound
+        </a>
+        <nav>
+            <a href="index.html" class="current">Home</a>
+            <a href="game.html">Play</a>
+            <a href="rankings.html">Rankings</a>
+            <a href="register.html">Register</a>
+            <a href="login.html">Log in</a>
+        </nav>
+        <div id="UserStatus" class="user-status"></div>
     </header>
-    <!-- Main content -->
-     
-    <main id="main">
-    </main>
-
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="site-footer__inner">
-            <p>Glowbound was made by Jayeshvara Kabeer Kotadoo forCST21230 Web Applications and Databases.</p>
-            <ul> class="site-footer__links">
-                <li><a href="pages/game.html">Game</a></li>
-                <li><a href="pages/rankings.html">Rankings</a></li>
-                <li><a href="pages/register.html">Register</a></li>
-                <li><a href="pages/login.html">Log in</a></li>
-            </ul>
+        <main>
+        <!-- Introduction to the game -->
+        <section class="intro">
+            <img src="images/site/hero.png" alt="The journey from the moonlit woods, through the crystal caves, to the portal in the molten core" width="1440" height="480">
+            <h1>Carry the light home</h1>
+            <p>The lanterns of the world have gone out. Guide Pip through three dark realms, gather every ember and open the portal home.</p>
+            <a class="button" href="game.html">Play now</a>
+        </section>
+                <!-- One card for each realm -->
+        <h2>The three realms</h2>
+        <div class="realms">
+            <div class="realm woods">
+                <img src="images/site/realm-woods.png" alt="Whispering Woods: Pip on the grass under the moon, with embers and a slime" width="960" height="540">
+                <h3>1. Whispering Woods</h3>
+                <p>Slimes guard the paths and the pits are deep. A gentle start.</p>
+            </div>
+            <div class="realm caves">
+                <img src="images/site/realm-caves.png" alt="Crystal Caverns: Pip among glowing crystals in a dark cave, with a bat overhead" width="960" height="540">
+                <h3>2. Crystal Caverns</h3>
+                <p>Only your lantern lights the way. Ride the moving platform across the chasm.</p>
+            </div>
+            <div class="realm core">
+                <img src="images/site/realm-core.png" alt="Molten Core: Pip on dark rock next to a pool of lava, with a fire spirit" width="960" height="540">
+                <h3>3. Molten Core</h3>
+                <p>The floor is lava and fire spirits drift in the heat. Do not touch them.</p>
+            </div>
         </div>
-    </footer>
+                <!-- Controls and rules -->
+        <h2>How to play</h2>
+        <ul class="how-to">
+            <li>Move with the left and right arrow keys. Jump with the up arrow. Press P to pause.</li>
+            <li>Collect every ember to open the portal to the next realm.</li>
+            <li>Jump on slimes and bats to defeat them. Fire spirits cannot be defeated.</li>
+            <li>Spikes, lava, pits and enemies each cost a life. You have three lives for the whole journey.</li>
+            <li>Log in before you play so your best score appears on the rankings.</li>
+        </ul>
+    </main>
+        <footer>
+        <p>Glowbound was made for CST2120 Web Applications and Databases.</p>
+        </footer>
 </body>
 </html>
+ 

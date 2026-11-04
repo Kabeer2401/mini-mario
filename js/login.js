@@ -2,9 +2,9 @@ import { UserStore } from "./storage.js";
 import { showUserStatus } from "./nav.js";
 
 const store = new UserStore();
-const loginPanel = document.querySelector("#loginPanel");
+const loginPanel = document.querySelector("#LoginPanel");
 
-document.querySelector("#loginButton").onclick = logIn;
+document.querySelector("#LoginButton").onclick = logIn;
 
 showLoggedIn();
 
@@ -18,9 +18,9 @@ function showLoggedIn() {
 
 //log user in after checking email and password
 function logIn() {
-    const email = document.querySelector("#emailInput").value.trim().toLowerCase();
-    const password = document.querySelector("#passwordInput").value;
-    const loginFailure = document.querySelector("#loginFailure");
+    const email = document.querySelector("#EmailInput").value.trim().toLowerCase();
+    const password = document.querySelector("#PasswordInput").value;
+    const loginFailure = document.querySelector("#LoginFailure");
 
     if (email === "" || password === "") {
         loginFailure.innerHTML = "Please enter both email and password.";
