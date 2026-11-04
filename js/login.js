@@ -39,6 +39,6 @@ function logIn() {
     }
 
     store.logInUser(email);
-    showloggedIn();
+    showLoggedIn();
     showUserStatus();
 }   
