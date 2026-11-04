@@ -1,332 +1,270 @@
-/* ==========================================================================
-   [[Your game name]] - shared stylesheet
-   One stylesheet is used by every page so the whole site shares one style.
-   Sections:
-     1. Design tokens
-     2. Base elements and typography
-     3. Layout helpers
-     4. Pixel borders, buttons and keycaps
-     5. Site header and navigation
-     6. Home page
-     7. Forms (registration and login)
-     8. Auth page layout and explorer preview
-     9. Game page
-    10. Rankings page
-    11. Site footer
-    12. Character sprites (added in Part 3)
-    13. Responsive adjustments
-    14. Reduced motion
-   ========================================================================== */
-
-
-/* 1. Design tokens
-   Every colour, font and size lives here, so the whole look changes from one place.
-   -------------------------------------------------------------------------- */
-:root {
-    /* YOUR TURN: your palette. Keep dark backgrounds with light text (or the reverse)
-       so everything stays readable. Change the hex values, not the names. */
-    --ink: #1b1838;            /* page background */
-    --ink-deep: #120f2a;       /* header and footer background */
-    --panel: #262150;          /* boxes and cards */
-    --panel-raised: #2f2960;   /* buttons and inputs */
-    --ridge: #3a3570;          /* borders */
-    --ridge-light: #554d9a;    /* highlighted borders */
-    --outline: #1a1530;        /* darkest edge, text on light buttons */
-    --text: #f3ebdd;           /* main text */
-    --muted: #bdb7dc;          /* secondary text */
-    --faint: #8a84b0;          /* placeholder text */
-    --accent: #ffb347;         /* links, main buttons, the current page */
-    --accent-light: #ffd38a;   /* accent on hover */
-    --accent-deep: #c26a2b;    /* accent in shadow */
-    --green: #7bd389;          /* level 1 colour */
-    --blue: #6fd3f2;           /* level 2 colour */
-    --hot: #ff7b39;            /* level 3 colour */
-    --danger: #ff8f8f;         /* error messages */
-    --success: #7bd389;        /* success messages */
-
-    /* See-through versions (the last number is the opacity) */
-    --header-glass: rgb(18 15 42 / 0.94);
-    --overlay: rgb(18 15 42 / 0.82);
-    --focus-glow: rgb(255 179 71 / 0.35);
-
-    /* YOUR TURN: your two fonts from Task 1.3, each followed by fallbacks */
-    --font-display: "Pixelify Sans", "Trebuchet MS", system-ui, sans-serif;
-    --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-
-    /* Type scale: each step is about 1.25 times the one below */
-    --step--1: 0.9rem;
-    --step-0: 1.0625rem;
-    --step-1: 1.33rem;
-    --step-2: 1.66rem;
-    --step-3: 2.08rem;
-    --step-4: clamp(2.3rem, 4.2vw, 3.4rem);
-
-    /* Spacing and sizing */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.5rem;
-    --space-6: 2rem;
-    --space-7: 3rem;
-    --space-8: 4.5rem;
-    --page-width: 72rem;
-    --measure: 64ch;
-    --pixel: 4px;
-}
-
-
-/* 2. Base elements and typography
-   -------------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-/* A flex column whose main area grows keeps the footer at the bottom of short pages */
+/*styles for every pages*/
+/*used css slides from moodle*/ 
 body {
+    background-color: #1b3b6f;
+    color: #f3ebdd;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
     margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--ink);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    line-height: 1.6;
 }
 
-main {
-    flex: 1;
-}
 
 h1,
 h2,
 h3 {
-    margin: 0 0 var(--space-4);
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: 0.01em;
-}
-
-h1 {
-    font-size: var(--step-4);
-}
-
-h2 {
-    font-size: var(--step-3);
-}
-
-h3 {
-    font-size: var(--step-1);
-}
-
-/* Long lines are hard to read, so paragraphs stop at about 64 characters */
-p {
-    margin: 0 0 var(--space-4);
-    max-width: var(--measure);
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    color: #ffb347;
 }
 
 a {
-    color: var(--accent);
-    text-underline-offset: 0.2em;
+    color: #ffd38a;
 }
 
-a:hover {
-    color: var(--accent-light);
+/*Main contentand footer useing box model from moodle*/
+main {
+    max-width: 960px;
+    min-height: 70vh;       /* vh is % of window height */
+    margin: 0 auto;
+    padding: 20px;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+footer {
+    background-color: #122a52;
+    color: #c6d2e8;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    border-top: 3px solid #ffb347;
 }
 
-/* A clear outline shows where keyboard focus is */
-:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 3px;
-}
-
-::selection {
-    background: var(--accent);
-    color: var(--outline);
-}
-
-/* Hidden on screen but still read out by screen readers */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Parked above the page until a keyboard user tabs to it */
-.skip-link {
-    position: absolute;
-    left: var(--space-4);
-    top: -4rem;
-    z-index: 100;
-    padding: var(--space-2) var(--space-4);
-    background: var(--accent);
-    color: var(--outline);
-    font-weight: 700;
-}
-
-.skip-link:focus {
-    top: var(--space-4);
-}
-
-/* 3. Layout helpers
-   -------------------------------------------------------------------------- */
-/* A centred column that never gets wider than the page width */
-.container {
-    width: 100%;
-    max-width: var(--page-width);
-    margin-inline: auto;
-    padding-inline: var(--space-5);
-}
-
-.section {
-    padding-block: var(--space-8);
-}
-
-.section__intro {
-    margin-bottom: var(--space-6);
-}
-
-.section__intro p {
-    color: var(--muted);
-}
-
-.page-heading {
-    padding-block: var(--space-7) var(--space-5);
-}
-
-.page-heading p {
-    color: var(--muted);
-    font-size: var(--step-1);
-    line-height: 1.45;
-}
-
-
-/* 4. Pixel borders, buttons and keycaps
-   The notched "pixel" border is drawn with four offset box-shadows, which
-   leaves the corners empty just like a sprite outline.
-   -------------------------------------------------------------------------- */
-/* YOUR TURN: notched corners suit pixel art. For a smoother style, replace the
-   four shadows with "border: 3px solid var(--frame-colour); border-radius: 12px;" */
-.pixel-frame {
-    --frame-colour: var(--ridge);
-    background: var(--panel);
-    box-shadow:
-        0 calc(var(--pixel) * -1) 0 0 var(--frame-colour),
-        0 var(--pixel) 0 0 var(--frame-colour),
-        calc(var(--pixel) * -1) 0 0 0 var(--frame-colour),
-        var(--pixel) 0 0 0 var(--frame-colour);
-}
-
-/* Buttons keep their colours in local variables, so a variant only changes the variables.
-   The fifth shadow is the "lip" underneath that makes the button look raised. */
-.button {
-    --btn-face: var(--panel-raised);
-    --btn-edge: var(--ridge-light);
-    --btn-lip: var(--outline);
-    --btn-text: var(--text);
-    display: inline-flex;
+/*Header and navigation bar useing box model from moodle*/  
+header {
+    background-color: #122a52;
+    padding: 10px 20px;
+    column-gap: 20px;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    min-height: 3rem;
-    padding: var(--space-2) var(--space-5);
-    border: 0;
-    background: var(--btn-face);
-    color: var(--btn-text);
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    font-weight: 600;
-    line-height: 1;
+    border-bottom: 3px solid #ffb347;
+}
+
+.logo{
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffb347;
+    text-decoration: none;
+}
+
+.logo img {
+    vertical-align: middle;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 10px;
+}
+
+nav > a {
+    color: #f3ebdd;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+nav > a:hover {
+    background-color: #21457d;
+}
+
+/*link to page on which user is*/
+nav > a.current {
+    background-color: #ffb347;
+    color: #0c1d3e;
+}
+
+user-status {
+    font-size: 14px;
+    text-align: right;
+}
+
+.user-status a {
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 10px;
+    margin-left: 10px;
+}
+
+/* button styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0c1d38;
+    background-color: #ffb347;
+    border: none;
+    border-radius: 6px;
     text-decoration: none;
     cursor: pointer;
-    box-shadow:
-        0 -3px 0 0 var(--btn-edge),
-        0 3px 0 0 var(--btn-edge),
-        -3px 0 0 0 var(--btn-edge),
-        3px 0 0 0 var(--btn-edge),
-        0 7px 0 0 var(--btn-lip);
-    transition: transform 80ms ease-out, box-shadow 80ms ease-out, filter 120ms;
 }
 
 .button:hover {
-    color: var(--btn-text);
-    filter: brightness(1.12);
+    background-color: #ffd38a;
+}
+/* Introduction section */
+.intro {
+    padding: 0 0 30px;
+    text-align: center;
+    background-color: #122a52;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-/* Pressed: the button moves down 4px and the lip shrinks */
-.button:active {
-    transform: translateY(4px);
-    box-shadow:
-        0 -3px 0 0 var(--btn-edge),
-        0 3px 0 0 var(--btn-edge),
-        -3px 0 0 0 var(--btn-edge),
-        3px 0 0 0 var(--btn-edge),
-        0 3px 0 0 var(--btn-lip);
-}
-
-.button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    transform: none;
-}
-
-.button--primary {
-    --btn-face: var(--accent);
-    --btn-edge: var(--accent-light);
-    --btn-lip: var(--accent-deep);
-    --btn-text: var(--outline);
-}
-
-.button--small {
-    min-height: 2.25rem;
-    padding-inline: var(--space-4);
-    font-size: var(--step-0);
-}
-
-.button--wide {
+.intro img {
     width: 100%;
+    height: auto;
 }
 
-/* Keyboard keys shown in the instructions: a small version of the button look */
-.kbd {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.2rem;
-    height: 2.2rem;
-    padding: 0 var(--space-2);
-    margin: 0 0.15rem 0.45rem;
-    background: var(--panel-raised);
-    color: var(--text);
-    font-family: var(--font-display);
-    font-size: var(--step-0);
-    box-shadow:
-        0 -2px 0 0 var(--ridge-light),
-        0 2px 0 0 var(--ridge-light),
-        -2px 0 0 0 var(--ridge-light),
-        2px 0 0 0 var(--ridge-light),
-        0 5px 0 0 var(--outline);
+.intro p {
+    padding: 0 20px;
 }
 
-.kbd--wide {
-    min-width: 4.5rem;
+/* 3 realm pictures side by side. 1fr gives each column an equal share of the width */
+.realms {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+.realm {
+    padding: 10px;
+    background-color: #21457d;
+    border-top: 6px solid #ffb347;
+    border-radius: 10px;
+}
+
+.realm img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* realms and colours*/
+.realm.woods {
+    border-top-color: #7bd389;
+}
+
+.realm.caves {
+    border-top-color: #7fdcf7;
+}
+
+.realm.core {
+    border-top-color: #ff9254;
+}
+/* register and login panel style */
+.panel {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 6px;
+    max-width: 420px;
+    padding: 20px;
+    background-color: #21457d;
+    border-radius: 10px;
+}
+
+.panel input,
+.panel select {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #3a66a3;
+    border-radius: 6px;
+}
+
+.panel input:focus,
+.panel select:focus {
+    border-color: #ffb347;
+}
+
+.panel .button {
+    margin-top: 10px;
+}
+
+.hint {
+    margin: 0;
+    font-size: 13px;
+    color: #c6d2e8;
+}
+
+/* Feedback messages */
+.feedback {
+    color: #ffa3a3;
+}
+
+.feedback.success {
+    color: #7bd389;
+}
+/* Game styles */
+.game-area canvas {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 3px solid #ffb347;
+    border-radius: 6px;
+}
+
+.note,
+.controls {
+    color: #c6d2e8;
+}
+
+.controls {
+    text-align: center;
+}
+/* Rankings table */
+.rankings {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rankings th,
+.rankings td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #3a66a3;
+}
+
+.rankings th {
+    background-color: #ffb347;
+    color: #0c1d38;
+}
+
+.rankings tr:nth-child(even) {
+    background-color: #21457d;
+}
+
+/* The logged-in player's own row */
+.rankings tr.me td {
+    font-weight: bold;
+    color: #ffb347;
+}
+/* Phone, from W3schools css media queries */
+@media (max-width: 700px) {
+    header,
+    .realms {
+        grid-template-columns: auto;
+        row-gap: 10px;
+    }
+
+    nav {
+        grid-template-columns: auto auto auto;
+        row-gap: 6px;
+    }
+
+    .user-status {
+        text-align: left;
+    }
 }
