@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in | Glowbound</title>
+    <title>Play | Glowbound</title>
     <link rel="icon" href="images/site/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&amp;display=swap">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
     <script type="module" src="js/nav.js"></script>
-    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/game/main.js"></script>
 </head>
 <body>
     <header>
@@ -25,3 +26,16 @@
         </nav>
         <div id="UserStatus" class="user-status"></div>
     </header>
+        <main>
+        <h1>Play</h1>
+        <p class="note">Log in before you play so your best score goes on the rankings.</p>
+
+        <div id="GameArea" class="game-area"></div>
+
+        <p class="controls">Left and right arrows to move, up arrow to jump, P to pause.</p>
+    </main>
+        <footer>
+        <p>Glowbound was made for CST2120 Web Applications and Databases.</p>
+    </footer>
+</body>
+</html>
