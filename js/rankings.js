@@ -11,9 +11,7 @@ players.sort((a, b) => b.topScore - a.topScore);
 if (players.length === 0) {
     document.querySelector('#NoScores').textContent = 'Nobody has registered yet. Register and play a run to be first!';
 }
-if (players.length === 0) {
-    document.querySelector('#NoScores').textContent = 'Nobody has registered yet. Register and play a run to be first!';
-}
+
 // Add one table row for each player
 players.forEach((player, index) => {
     const row = document.createElement('tr');

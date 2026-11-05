@@ -7,13 +7,13 @@ import { FireSpirit } from "./FireSpirit.js";
 import { MovingPlatform } from "./MovingPlatform.js";
 import { Hud } from "./Hud.js";
 
-const EMBER_Points = 10;
+const EMBER_POINTS = 10;
 const STOMP_POINTS = 50;
 const REALM_BONUS = 100;
 const GROUND_ROW = 15;
 const HALF = TILE / 2; //adding 1/2 a tile puts an obj in the middle of its tile
 
-/** Plays one realmn and the same scene is restarted with new data for each realm */
+/** Plays one realm and the same scene is restarted with new data for each realm */
 export class RealmScene extends Phaser.Scene {
     #realm;
     #realmIndex;
@@ -41,7 +41,7 @@ export class RealmScene extends Phaser.Scene {
         this.#realmIndex = data.realmIndex;
         this.#score = data.score;
         this.#lives = data.lives;
-        this.#realm = REALMS[this.realmIndex];
+        this.#realm = REALMS[this.#realmIndex];
         this.#portalOpen = false;
         this.#leaving = false;
     }
@@ -58,7 +58,7 @@ export class RealmScene extends Phaser.Scene {
         this.#addPlayer();
         this.#addCollisions();
         this.#addDarkness();
-        this.playMusic();
+        this.#playMusic();
 
         this.#hud = new Hud(this, this.#realm.name);
         this.#hud.showTitle(this.#realmIndex + 1, this.#realm.name, this.#realm.tagline);
@@ -67,7 +67,7 @@ export class RealmScene extends Phaser.Scene {
         this.#cursors = this.input.keyboard.createCursorKeys();
         this.input.keyboard.on('keydown-P', this.#pause, this);
     }
-    /** Runs eery frame. */
+    /** Runs every frame. */
     update() {
         if (this.#leaving) {
             return;
@@ -109,12 +109,12 @@ export class RealmScene extends Phaser.Scene {
         //Ledges: a row of top tiles
         this.#realm.ledges.forEach(([column, row, width]) => {
             for (let i = 0; i < width; i++) {
-                this.#platforms.create((column = i) * TILE + HALF, row * TILE + HALF, key + '-top');
+                this.#platforms.create((column + i) * TILE + HALF, row * TILE + HALF, key + '-top');
             }
         });
 
         //The player can fall out of the bottom of the world, but not off the sides or top
-        this.physics.world.setBoundsCollison(true, true, true, false);
+        this.physics.world.setBoundsCollision(true, true, true, false);
     }
 
     /** Spikes on the ground and pools of lava */
