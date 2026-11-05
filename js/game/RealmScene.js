@@ -272,6 +272,9 @@ export class RealmScene extends Phaser.Scene {
         this.#score += REALM_BONUS;
         const nextIndex = this.#realmIndex + 1;
         if (nextIndex < REALMS.length) {
+            this.#lives += 1;
+            this.#updateHud();
+            this.#hud.showMessage('Realm complete ! +1 life');
             this.#leaving = true;
             this.physics.pause();
             this.#player.setVisible(false);
