@@ -8,7 +8,7 @@ const config = {
     type: Phaser.AUTO,
     width: 960,
     height: 540,
-    parent: 'GameArea'
+    parent: 'GameArea',
     pixelArt: true,
     physics: {
         default: 'arcade',
@@ -17,7 +17,7 @@ const config = {
             debug: false
         }
     },
-    scene: [BootScene, RealmScene, PauseScene, Endscene]
+    scene: [BootScene, RealmScene, PauseScene, EndScene]
 };
 
 //Create game, Phaser starts 1st scene

@@ -16,7 +16,7 @@ export class UserStore {
     #saveUsers(users) {
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
     }
-//return email or undefined if none found
+//return the user with this email or undefined if none found
     findUser(email) {
         return this.getUsers().find(user => user.email === email);
     }   

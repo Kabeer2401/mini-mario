@@ -6,7 +6,7 @@ showUserStatus(); /**show user status as soon as the page loads */
 
 export function showUserStatus() {
     const userStatus = document.querySelector("#UserStatus");
-    const email = store.getLoggedInUser();
+    const user = store.getLoggedInUser();
     userStatus.innerHTML = "";
     if (user === undefined) {
         userStatus.textContent = "Not logged in.";

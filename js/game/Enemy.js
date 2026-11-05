@@ -15,7 +15,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     //turns round at either end of the walk
     patrol() {
         if (this.x > this.#startX + this.#distance) {
-            this.setVelocityX(-Maths.abs(this.body.velocity.x));
+            this.setVelocityX(-Math.abs(this.body.velocity.x));
+        } else if (this.x < this.#startX - this.#distance) {
+            this.setVelocityX(Math.abs(this.body.velocity.x));
         }
         this.setFlipX(this.body.velocity.x < 0);
     }

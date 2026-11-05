@@ -6,7 +6,7 @@ const store = new UserStore();
 //Run registerUser when button is clicked
 document.querySelector("#RegisterButton").onclick = registerUser;
 
-//Check details and if valid, add user to local storage and redirect to login page
+//Check details and if valid, add user to local storage and show success
 function registerUser() {
     //Extract data from the field inputs 
     const details = {
@@ -31,7 +31,7 @@ function registerUser() {
         return;
     }
 
-    //Build object to store password as    
+    //Build object to store     
     const newUser = {
         name: details.name,
         email: details.email,

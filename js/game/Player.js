@@ -4,7 +4,7 @@ const RUN_SPEED = 200;
 const JUMP_SPEED = -480;
 const SAFE_TIME = 1500; //Milliseconds
 
-/**Moves character with arrows and plays sits sprite-animations. */
+/**Moves character with arrows and plays its sprite-animations. */
 export class Player extends Phaser.Physics.Arcade.Sprite {
     #tint;
     #startX;
@@ -25,7 +25,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setSize(12, 36);
         this.body.setOffset(34, 28);
         this.setCollideWorldBounds(true);
-
+    }
         //move player from arrow keys
 
     move(cursors) {

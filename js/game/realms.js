@@ -17,7 +17,7 @@ export const COLOURS = { Ember: 0xffb070, Tide: 0x70d0ff, Moss: 0xa0f070, Violet
  * enemies: [type('slime/bat/spirit'), column, row, distance]
  * movers: [column, row, width, distance, direction] direction is 'x' (side to side) or 'y'(up and down)
  * spikes: [firstColumn, lastColumn ] for each row of spikes on the ground
- * *lava: [firstColumn, lastColumn] for each pool of lava
+ * lava: [firstColumn, lastColumn] for each pool of lava
  * portal: the column where the portal stands on the ground
  */
 export const REALMS = [
