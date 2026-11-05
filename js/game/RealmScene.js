@@ -57,6 +57,7 @@ export class RealmScene extends Phaser.Scene {
         this.#addEnemies();
         this.#addPlayer();
         this.#addCollisions();
+        this.#followPlayer();
         this.#addDarkness();
         this.#playMusic();
 
@@ -87,10 +88,10 @@ export class RealmScene extends Phaser.Scene {
         }
     }
 
-    /**2 Background pictures: sky at back, then the trees or rocks in front of it */
+    /**2 Background pictures: sky at back, then the trees or rocks in front of it and setScrollFactor(0) keeps the picture still while the camera moves */
     #addBackground() {
         ['sky', 'far'].forEach(layer => {
-            this.add.image(0, 0, this.#realm.key + '-' + layer).setOrigin(0, 0);
+            this.add.image(0, 0, this.#realm.key + '-' + layer).setOrigin(0, 0).setScrollFactor(0);
         });
     }
     /**the ground and the ledges, built from tiles that never move. */
@@ -113,8 +114,8 @@ export class RealmScene extends Phaser.Scene {
             }
         });
 
-        //The player can fall out of the bottom of the world, but not off the sides or top
-        this.physics.world.setBoundsCollision(true, true, true, false);
+                // The world is as wide as the realm. The player can fall out of the bottom, but not off the sides or top
+        this.physics.world.setBounds(0, 0, this.#realm.width * TILE, 540, true, true, true, false);
     }
 
     /** Spikes on the ground and pools of lava */
@@ -183,6 +184,11 @@ export class RealmScene extends Phaser.Scene {
         }
         // The hero's feet are 24 pixels below the middle of its 80 x 80 frame, so this stands it on the ground
         this.#player = new Player(this, 1 * TILE + HALF, GROUND_ROW * TILE - 24, colour);
+    }
+        /** The camera follows the player, but never shows past the edges of the realm (Phaser: Cameras). */
+    #followPlayer() {
+        this.cameras.main.setBounds(0, 0, this.#realm.width * TILE, 540);
+        this.cameras.main.startFollow(this.#player);
     }
 
         /** Tells Phaser what happens when things touch (Phaser tutorial, parts 6, 8 and 9). */

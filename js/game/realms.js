@@ -11,6 +11,7 @@ export const COLOURS = { Ember: 0xffb070, Tide: 0x70d0ff, Moss: 0xa0f070, Violet
  * column 0 is left edge, row 0 is top, and ground always on row 15
  * key:start of realm's tile, background and music file
  * darkness: 0 no darkness & 1 black
+ * width: how many tiles wide the realm is (30 tiles fill one screen)
  * ground: [FirstColumn, LastColumn] for each stretch of ground, gaps between are pits
  * ledges: [Column, Row, Width] each floating ledge
  * embers: [column, row] 
@@ -26,6 +27,7 @@ export const REALMS = [
         tagline: 'Follow the embers through the dusk.',
         key: 'woods',
         darkness: 0,
+        width: 30,
         ground: [[0, 8], [12, 19], [23,29]],
         ledges: [[3, 12, 3], [9, 10, 3], [15, 12, 3], [20, 9, 3], [25, 12, 3]],
         embers: [
@@ -43,6 +45,7 @@ export const REALMS = [
         tagline: 'Only your lantern lights the way.',
         key: 'caves',
         darkness: 0.8,
+        width: 45,
         ground: [[0, 7], [16, 29]],
         ledges: [[2, 12, 3], [18, 12, 3], [22, 9, 3], [26, 12, 3]],
         embers: [
@@ -60,6 +63,7 @@ export const REALMS = [
         tagline: 'Keep moving. The floor is lava.',
         key: 'core',
         darkness: 0.7,
+        width: 60,
         ground: [[0, 6], [11, 17], [24, 29]],
         ledges: [[3, 12, 3], [13, 12, 3], [25, 12, 3]],
         embers: [
